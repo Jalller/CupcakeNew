@@ -27,11 +27,13 @@ public class AddToCartServlet extends HttpServlet {
         int topId = Integer.parseInt(request.getParameter("cupcaketop"));
         int bottomId = Integer.parseInt(request.getParameter("cupcakebottom"));
         int quantity = Integer.parseInt(request.getParameter("quantity"));
-        ConnectionPool connectionPool = new ConnectionPool();
-        Top top = CupcakeFacade.getTopById(topId,connectionPool);
-        Bottom bottom = CupcakeFacade.getBottomById(bottomId,connectionPool); //skal også lave datamapper
 
-        Cupcake cupcake = new Cupcake(top, bottom,quantity);
+        ConnectionPool connectionPool = new ConnectionPool();
+        Cupcake cupcake = new Cupcake(topId,bottomId,quantity);
+        //Top top = CupcakeFacade.getTopById(topId,connectionPool);
+        //Bottom bottom = CupcakeFacade.getBottomById(bottomId,connectionPool); //skal også lave datamapper
+
+        //Cupcake cupcake = new Cupcake(top, bottom,quantity);
 
         cart.add(cupcake); //ligger til
         session.setAttribute("cart",cart); //gemmer ny cart efter vi har lagt til
